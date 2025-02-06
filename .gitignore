@@ -1,0 +1,36 @@
+# Objektum fájlok
+*.o
+*.obj
+
+# Fordított fájlok
+*.exe
+*.out
+*.app
+
+# Köztes fájlok
+*.a
+*.lib
+*.so
+*.dylib
+
+# C programokhoz kapcsolódó fájlok
+*.i
+*.s
+*.lst
+*.pdb
+
+# Automatikusan generált fájlok
+*.d
+*.dep
+
+# Fordító napló fájlok
+*.log
+
+# Közvetlenül generált fájlok (pl. Makefile)
+Makefile
+Makefile.dep
+
+# Projektspecifikus fájlok (pl. IDE vagy editor fájlok)
+.vscode/
+.idea/
+*.swp
