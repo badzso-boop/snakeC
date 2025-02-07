@@ -2,6 +2,8 @@
     "files.associations": {
         "stdio.h": "c",
         "stdlib.h": "c",
-        "snake.h": "c"
+        "snake.h": "c",
+        "span": "c",
+        "type_traits": "c"
     }
 }

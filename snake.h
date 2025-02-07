@@ -9,6 +9,7 @@
 typedef struct Snake {
     Position head;   // Kígyó feje
     QNode* bodyHead; // Kígyó teste, sorozatos koordináták (sor/tömb)
+    QNode* bodyTail; // kígyó farka
     int length;      // Kígyó hossza
 } Snake;
 

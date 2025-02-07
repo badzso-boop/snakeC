@@ -20,9 +20,13 @@ int main() {
         free(numbers);
         return 1;
     }
-    map_initialization(map, '0', '@');
-    set_value(map, 1, 1, '1');
+    map_initialization(map, '.', '@');
+    // set_value(map, 1, 1, '1');
     set_value(map, 1, 6, '5');
+    set_value(map, 5, 2, '5');
+    set_value(map, 7, 3, '5');
+    set_value(map, 5, 5, '5');
+    set_value(map, 8, 7, '5');
     print_map(map);
 
 

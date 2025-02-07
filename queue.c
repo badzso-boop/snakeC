@@ -30,7 +30,7 @@ void enqueue(QNode** head, QNode** tail, Position position) {
 
 int dequeue(QNode** head, QNode** tail, Position* position) {
     if (*head == NULL) {
-        printf("A sor üres, nincs mit eltávolítani.\n");
+        printf("A sor ures, nincs mit eltavolitani.\n");
         *tail = NULL; // Ha üres a lista, akkor a tail is NULL-ra áll
         return -1; // Hibaérték, ha üres a sor
     }
