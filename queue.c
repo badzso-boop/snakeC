@@ -2,22 +2,21 @@
 #include <stdlib.h>
 #include "queue.h"
 
-QNode* create_QNode(int x, int y) {
+QNode* create_QNode(Position position) {
     QNode* new_node = (QNode*)malloc(sizeof(QNode));
     if (new_node == NULL) {
         printf("Memoriafoglalasi hiba");
         exit(1);
     }
 
-    new_node->x = x;
-    new_node->y = y;
+    new_node->position = position;
     new_node->next = NULL;
 
     return new_node;
 }
 
-void enqueue(QNode** head, QNode** tail, int x, int y) {
-    QNode* new_node = create_QNode(x, y);
+void enqueue(QNode** head, QNode** tail, Position position) {
+    QNode* new_node = create_QNode(position);
     if (*tail != NULL)
     {
         (*tail)->next = new_node;
@@ -29,7 +28,7 @@ void enqueue(QNode** head, QNode** tail, int x, int y) {
     *tail = new_node;
 }
 
-int dequeue(QNode** head, QNode** tail, int* x, int* y) {
+int dequeue(QNode** head, QNode** tail, Position* position) {
     if (*head == NULL) {
         printf("A sor üres, nincs mit eltávolítani.\n");
         *tail = NULL; // Ha üres a lista, akkor a tail is NULL-ra áll
@@ -37,8 +36,7 @@ int dequeue(QNode** head, QNode** tail, int* x, int* y) {
     }
 
     QNode* temp = *head;
-    *x = temp-> x;
-    *y = temp->y;
+    *position = temp-> position;
 
     *head = (*head)->next; // A head a következő elemre mutat
 
@@ -53,7 +51,20 @@ void print_queue(QNode* head) {
         return;
     }
     while(head) {
-        printf("(%d, %d)\n", head->x, head->y);
+        printf("(%d, %d)\n", head->position.x, head->position.y);
+        head = head->next;
+    }
+}
+
+void modify(QNode* head, Position* new_position) {
+    if (head == NULL)
+    {
+        return;
+    }
+    
+    while(head) {
+        head->position.x = new_position->x;
+        head->position.y = new_position->y;
         head = head->next;
     }
 }
@@ -62,13 +73,12 @@ int is_empty(QNode* head) {
     return head == NULL;
 }
 
-int peek(QNode* head, int* x, int* y) {
+int peek(QNode* head, Position* position) {
     if (is_empty(head)) {
         printf("A sor ures, nincs ertek.\n");
         return -1; // Hibaertek
     }
-    *x = head->x;
-    *y = head->y;
+    *position = head->position;
     return 0;
 }
 

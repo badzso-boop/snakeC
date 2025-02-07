@@ -1,61 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <conio.h>
+#include <string.h> 
+#include <unistd.h>
+#include "queue.h"
+#include "map.h"
+#include "snake.h"
 
 int main() {
-    int *ptr = (int*) malloc(sizeof(int)); // Egyetlen int meretu helyet foglalunk
+    int *numbers = malloc(4 * sizeof(int*));
+    numbers[0] = 10; // rows
+    numbers[1] = 10; // cols
+    numbers[2] = 0; // x
+    numbers[3] = 0; // y
 
-    if (ptr == NULL) {
-        printf("Memoriafoglalasi hiba!\n");
+    Map* map = create_map(numbers[0], numbers[1]);
+    if (map == NULL) {
+        printf("Hiba a térkép létrehozásánál.\n");
+        free(numbers);
         return 1;
     }
+    map_initialization(map, '0', '@');
+    set_value(map, 1, 1, '1');
+    set_value(map, 1, 6, '5');
+    print_map(map);
 
-    *ptr = 100; // Az uj memoriateruletre beallitunk egy erteket
-    printf("A foglalt memoria tartalma: %d\n", *ptr);
 
-    *ptr = 69; // Az uj memoriateruletre beallitunk egy erteket
-    printf("A foglalt memoria tartalma: %d\n", *ptr);
 
-    free(ptr); // Fontos: a lefoglalt memoria felszabaditasa
+    Snake* snake = create_snake(1, 1);
+    int game_running = 1;
+    char direction = 'R';  // Kezdő irány
 
-    printf("\n\n");
+    while (game_running) {
+        system("cls");
+        print_map(map);  // Kiírja a térképet
+        if (_kbhit()) {  // Ha billentyűt nyomtak
+            char c = _getch();  // Elolvassa a billentyűt
+            switch (c) {
+                case 'a':
+                    if (direction != 'R') direction = 'L';  // Balra
+                    break;
+                case 'd':
+                    if (direction != 'L') direction = 'R';  // Jobbra
+                    break;
+                case 'w':
+                    if (direction != 'D') direction = 'U';  // Fel
+                    break;
+                case 's':
+                    if (direction != 'U') direction = 'D';  // Le
+                    break;
+            }
+        }
 
-    int n;
-    printf("Hany elemet szeretnel? ");
-    scanf("%d", &n);
-
-    int *tomb = (int*) malloc(n * sizeof(int)); // Dinamikus foglalas
-
-    if (tomb == NULL) {
-        printf("Memoriafoglalasi hiba!\n");
-        return 1;
+        game_running = move_snake(snake, direction, map, '1');  // A kígyót az aktuális irányba mozgatja
+        usleep(700000);  // Várakozás 0.5 másodpercig
     }
-
-    for (int i = 0; i < n; i++) {
-        tomb[i] = i * 2; // Feltoltjuk a tombot
-    }
-
-    printf("Tomb elemei: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", tomb[i]);
-    }
-
-    free(tomb); // Fontos: Memoria felszabadítasa!
-
-    printf("\n\n");
-
-
-    char *str = (char*) malloc(50 * sizeof(char)); // 50 karakter foglalása
-    if (str == NULL) {
-        printf("Memóriafoglalási hiba!\n");
-        return 1;
-    }
-
-    strcpy(str, "Norbi kugija nagyon nagy!"); // Sztring másolása
-    printf("%s\n", str);
-
-    free(str); // Fontos felszabadítani!
-
     
+    
+
+
+
+
+    // Felszabadítjuk a memóriát
+    for (int i = 0; i < map->rows; i++) {
+        free(map->data[i]);
+    }
+    free(map->data);
+    free(map);
+    free(numbers);
+
     return 0;
 }
