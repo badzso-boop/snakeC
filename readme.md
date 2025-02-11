@@ -47,7 +47,8 @@ Defines and implements snake-related functions.
 2. Open a terminal and navigate to the project directory.
 3. Compile the program using:
    ```sh
-   gcc main.c queue.c map.c snake.c -o snake_game
+   gcc main.c queue.c map.c snake.c -o snake.exe
+>> ./snake.exe
    ```
 4. Run the executable:
    ```sh

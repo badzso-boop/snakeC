@@ -54,6 +54,8 @@ int main() {
         game_running = move_snake(snake, direction, map, '1');  // A kígyót az aktuális irányba mozgatja
         usleep(700000);  // Várakozás 0.5 másodpercig
     }
+
+    getchar();
     
     
 
