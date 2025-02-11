@@ -2,9 +2,9 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "snake.h"
-#include "map.h"
-#include "queue.h"
+#include "./headers/snake.h"
+#include "./headers/map.h"
+#include "./headers/queue.h"
 
 Snake* create_snake(int start_x, int start_y) {
     Snake* snake = malloc(sizeof(Snake));

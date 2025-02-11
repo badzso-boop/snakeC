@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "queue.h"
+#include "./headers/queue.h"
 
 QNode* create_QNode(Position position) {
     QNode* new_node = (QNode*)malloc(sizeof(QNode));

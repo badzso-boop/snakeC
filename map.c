@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "map.h"
+#include "./headers/map.h"
 
 Map* create_map(int rows, int cols) {
     Map* map = malloc(sizeof(Map));

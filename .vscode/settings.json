@@ -5,6 +5,8 @@
         "snake.h": "c",
         "span": "c",
         "type_traits": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "map.h": "c",
+        "queue.h": "c"
     }
 }
