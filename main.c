@@ -3,9 +3,9 @@
 #include <conio.h>
 #include <string.h> 
 #include <unistd.h>
-#include "queue.h"
-#include "map.h"
-#include "snake.h"
+#include "./headers/queue.h"
+#include "./headers/map.h"
+#include "./headers/snake.h"
 
 int main() {
     int *numbers = malloc(4 * sizeof(int*));
