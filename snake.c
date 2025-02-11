@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include "snake.h"
 #include "map.h"
@@ -55,6 +57,7 @@ void eat(Snake* snake, Map* map, char direction) {
 }
 
 int move_snake(Snake* snake, char direction, Map* map, char value) {
+    srand(time(NULL));
     Position pos;
     Position new_head = snake->head;
 
@@ -70,12 +73,18 @@ int move_snake(Snake* snake, char direction, Map* map, char value) {
     // utkozesellenorzes
     int collision = is_collision(new_head, map);
     if (collision == 1) {
-        printf("Utkozes tortent a jatek a vegere ert!\n");
+        printf("Utkozes tortent a jatek a vegere ert!");
         return 0;
     }
 
     // uj fej hozzaadasa
     enqueue(&snake->bodyHead, &snake->bodyTail, new_head);
+    if (collision == 2) {
+        int x = (rand() % 8) + 1;
+        int y = (rand() % 8) + 1;
+        set_value(map, x, y, '5');
+    }
+    
 
     // Ha nem evett, a farok eltavolitasa
     if (collision != 2) {
