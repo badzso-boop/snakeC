@@ -59,6 +59,14 @@ int main() {
 
 
 
+    QNode* current = snake->bodyHead;
+    while (current)
+    {
+        QNode* temp = current;
+        free(temp);
+        current = current->next;
+    }
+    free(snake);   
 
     // Felszabadítjuk a memóriát
     for (int i = 0; i < map->rows; i++) {
